@@ -5,6 +5,8 @@ I = 0.4; %charging current in A
 R = 8.314; %Ideal gas constant (J/K/mol)
 T = 298.15; %absolute temperature (K)
 F = 96485; %Faraday constant (C/mol)
+b = 0.9; %fitted constant for the flow rate
+a = 1e-5; %fitted constant for the flow rate
 
 %------ Battery composition at SOC 50
 cT1 = 0.56; %TEMPO+ concentration (M)
