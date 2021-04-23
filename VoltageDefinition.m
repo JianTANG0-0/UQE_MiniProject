@@ -10,6 +10,9 @@ I = 0.4; %charging current in A
 b = 0.9; %fitted constant for the flow rate
 A = 2.236*0.4e-4; %electrode area (m^2)
 a = A*4e-5; %fitted constant for the electrolyte flow rate
+I0 = 0.2; %reference current (A)
+Ep0 = 0.62; %thermodynamic potential of TEMPO (V)
+En0 = -0.63; %thermodynamic potential of MV (V)
 
 %------ Distributed inputs
 N=10; %input size
