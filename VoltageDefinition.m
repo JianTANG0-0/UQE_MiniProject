@@ -11,12 +11,6 @@ b = 0.9; %fitted constant for the flow rate
 A = 2.236*0.4e-4; %electrode area (m^2)
 a = A*4e-5; %fitted constant for the electrolyte flow rate
 
-%------ Battery composition at SOC 50 (hard-coded)
-cT1 = 0.56; %TEMPO+ concentration (M)
-cT2 = 0.56; %TEMPO2+ concentration (M)
-cM1 = 0.745; %MV+ concentration (M)
-cM2 = 0.745; %MV2+ concentration (M)
-
 %------ Distributed inputs
 N=10; %input size
 %---Cell resistance
