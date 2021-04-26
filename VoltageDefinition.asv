@@ -37,12 +37,17 @@ sigmaGamman = sqrt(log(1+sGamman/mGamman^2)); %shape parameter
 Gamman=lognrnd(muGamman,sigmaGamman,[N 1]); %lognormal distribution
 
 %---Flow rate (normal distribution)
-mQ=21; %mean (mL/mi)
-sQ=3; %var (Ohms)
+mQ=21; %mean (mL/min)
+sQ=3; %var (mL/min)
 Q = normrnd(mQ, sQ, [N 1]); %normal distribution
+%---function g from flow rate
+g = 1-I./(a.*Q.^b);
+
+%---Input vector X
+X = horzcat(R, Gammap, Gamman, Q);
 
 %----Creating vectorized function for the cell voltage
-U = @(X) X(:,1).*I + X(:,2)+ X(:,3); %the overpotential term is missing for now
+U = @(X) X(:,1).*I + Ep0 - En0 + R*T/F* log( X(:,2).*X(:,3)) +R*T/F/2 .*log((I+sqrt(I^2))/(2.*g)) ;
 
 
 
