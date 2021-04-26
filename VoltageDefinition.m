@@ -21,25 +21,25 @@ N=10; %input size
 %---Cell resistance (normal distribution)
 mR=0.380; %mean (Ohms)
 sR=0.100; %var (Ohms)
-R = normrnd(mR, sR, [N 1]); %normal distribution
+R = normrnd(mR, sR, [N 1]); %normally distributed random numbers
 
 %---Activity ratios (lognormal distribution)
 mGammap=1; %mean
 sGammap=1; %var
 muGammap = log(mGammap^2/sqrt(sGammap+mGammap^2)); % location
 sigmaGammap = sqrt(log(1+sGammap/mGammap^2)); %shape parameter
-Gammap=lognrnd(muEp,sigmaGammap,[N 1]); %lognormal distribution
+Gammap=lognrnd(muEp,sigmaGammap,[N 1]); %lognormally distributed random numbers
 
 mGamman=1; %mean
 sGamman=1; %var
 muGamman = log(mGamman^2/sqrt(sGamman+mGamman^2)); % location
 sigmaGamman = sqrt(log(1+sGamman/mGamman^2)); %shape parameter
-Gamman=lognrnd(muGamman,sigmaGamman,[N 1]); %lognormal distribution
+Gamman=lognrnd(muGamman,sigmaGamman,[N 1]); %lognormally distributed random numbers
 
 %---Flow rate (normal distribution)
 mQ=21; %mean (mL/min)
 sQ=3; %var (mL/min)
-Q = normrnd(mQ, sQ, [N 1]); %normal distribution
+Q = normrnd(mQ, sQ, [N 1]); %normally distributed random numbers
 %---function g from flow rate
 g = 1-I./(a.*Q.^b);
 
