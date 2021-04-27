@@ -15,6 +15,7 @@ Ep0 = 0.62; %thermodynamic potential of TEMPO (V)
 En0 = -0.63; %thermodynamic potential of MV (V)
 kp0 = 4.2e-5; %kinetic constant of TEMPO (m/s)
 kn0 = 3.3e-5; %kinetic constant of MV (m/s)
+%test
 
 %------ Distributed inputs
 N=10; %input size
