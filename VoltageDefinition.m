@@ -8,8 +8,9 @@ F = 96485; %Faraday constant (C/mol)
 %-----Known Inputs
 I = 0.4; %charging current (A)
 b = 0.9; %fitted constant for the flow rate
-A = 2.236*0.4e-4; %electrode area (m^2)
-a = A*4e-5; %fitted constant for the electrolyte flow rate
+A_e = 2.236*0.4e-4; %electrode area (m^2)
+A_m = 5e-4; %membrane area (m^2)
+a = 4e-5; %fitted constant for the electrolyte flow rate
 Ep0 = 0.62; %thermodynamic potential of TEMPO (V)
 En0 = -0.63; %thermodynamic potential of MV (V)
 kp0 = 4.2e-5; %kinetic constant of TEMPO (m/s)
@@ -41,8 +42,8 @@ mQ=21e-6/60; %mean (conversion mL/min to m^3/s)
 sQ=3e-6/60; %var (conversion mL/min to m^3/s)
 Q = normrnd(mQ, sQ, [N 1]); %normally distributed random numbers
 %---concentration difference between bulk and surface
-Deltac = I./(a.*Q.^b)
-g = 1- Deltac;
+Deltac = I/A_m./(F*a.*(Q./A_e).^b)/1000;
+g = 1- Deltac/1000;
 
 %---Input vector X
 X = horzcat(R, Gammap, Gamman, g);
