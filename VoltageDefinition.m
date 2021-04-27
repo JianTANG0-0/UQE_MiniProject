@@ -6,7 +6,7 @@ T = 298.15; %absolute temperature (K)
 F = 96485; %Faraday constant (C/mol)
 
 %-----Known Inputs
-I = 0.4; %charging current in A
+I = 0.4; %charging current (A)
 b = 0.9; %fitted constant for the flow rate
 A = 2.236*0.4e-4; %electrode area (m^2)
 a = A*4e-5; %fitted constant for the electrolyte flow rate
@@ -28,7 +28,7 @@ mGammap=1; %mean
 sGammap=1; %var
 muGammap = log(mGammap^2/sqrt(sGammap+mGammap^2)); % location
 sigmaGammap = sqrt(log(1+sGammap/mGammap^2)); %shape parameter
-Gammap=lognrnd(muEp,sigmaGammap,[N 1]); %lognormally distributed random numbers
+Gammap=lognrnd(muGammap,sigmaGammap,[N 1]); %lognormally distributed random numbers
 
 mGamman=1; %mean
 sGamman=1; %var
@@ -37,11 +37,12 @@ sigmaGamman = sqrt(log(1+sGamman/mGamman^2)); %shape parameter
 Gamman=lognrnd(muGamman,sigmaGamman,[N 1]); %lognormally distributed random numbers
 
 %---Flow rate (normal distribution)
-mQ=21; %mean (mL/min)
-sQ=3; %var (mL/min)
+mQ=21e-6/60; %mean (conversion mL/min to m^3/s)
+sQ=3e-6/60; %var (conversion mL/min to m^3/s)
 Q = normrnd(mQ, sQ, [N 1]); %normally distributed random numbers
-%---function g from flow rate
-g = 1-I./(a.*Q.^b);
+%---concentration difference between bulk and surface
+Deltac = I./(a.*Q.^b)
+g = 1- Deltac;
 
 %---Input vector X
 X = horzcat(R, Gammap, Gamman, g);
