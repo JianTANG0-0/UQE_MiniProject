@@ -12,7 +12,7 @@ Polynomials=zeros(Shape_Alpha(1),1);
 for i=1:length(Polynomials)
     poly=zeros(M,1);
     for k=1:M
-        poly(k)=eval_legendre(X(k),alpha(i,k));
+        poly(k)=eval_legendre(X(k),Alpha(i,k));
     end
     Polynomials(i)=prod(poly);
 end
