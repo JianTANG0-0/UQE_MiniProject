@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 %% Input sampling and isoprobability transformation
 % by Jian TANG @ Empa & ETHz
 % Input parameters:
@@ -166,6 +165,3 @@ else
 end
 
 end
-
-
->>>>>>> d4ab9a66cedae533c76f99dca130fd0035ec08b5
