@@ -4,7 +4,8 @@ function [Z,Alpha,c] = regression_matrix(M,p,X,y)
 %Input Variables:
 %M number of inputs of our computational model
 %p maximum degree of polynomials allowed
-%X auxiliary experimental design
+%X auxiliary experimental design (i.e., variables uniformly distributed
+%on [-1,1]
 %y=voltage(x) where x is the original experimental design
 %X uniformly distributed variables on [ai,bi]
 %Output Variables:
@@ -34,7 +35,7 @@ for i=1:Shape_X(2)
     end
 end
 
-c=pinv(transpose(Z)*Z)*transpose(Z)*y;
+c=pinv(transpose(Z)*Z)*transpose(Z)*y';
             
 
 

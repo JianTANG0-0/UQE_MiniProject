@@ -4,7 +4,9 @@ function [Y] = model_evaluation(c,M,X,Alpha)
 %c vector containing the PCE coefficients
 %M number of inputs of the model
 %p maximal degree allowed
-%X input for the evaluation of the PCE model
+%X input for the evaluation of the PCE model of dimension Mx1
+%X must always be isoprobabilistically transformed in
+%a uniformly distributed random variable on [-1,1]
 
 
 Shape_Alpha=size(Alpha);

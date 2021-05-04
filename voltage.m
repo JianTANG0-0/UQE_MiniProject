@@ -1,11 +1,9 @@
 function [U] = voltage(X)
 %function which realises the vectorised voltage according
 %to the sampled experimental design of size 4xn (with n sampling points)
-%X can be either the original input samples for the original model
+%X is the original input samples for the original model
 %evaluation
-%or it can be the auxiliary variables experimental design needed when
-%building/evaluating the model through the approximated PCE model
-%V is size of 4xn
+%V is size of 1xn
 %------Physical constants
 R = 8.314; %Ideal gas constant (J/K/mol)
 T = 298.15; %absolute temperature (K)
