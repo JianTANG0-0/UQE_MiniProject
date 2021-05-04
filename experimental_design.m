@@ -4,9 +4,9 @@ function [E,X] = experimental_design(n,sampling)
 %n: sampling points of the experimental design
 %sampling: type of sampling between 'random' or 'LatinHypercube'
 %Output Variables:
-%E is a matrix of dimension 4xn containing auxiliary variables samples
+%E is a matrix of dimension Mxn containing auxiliary variables samples
 %uniformly distributed on [-1,1];
-%X is a matrix of dimension 4xn containing the original variables samples
+%X is a matrix of dimension Mxn containing the original variables samples
 
 
 if strcmp(sampling,'random') == 1
