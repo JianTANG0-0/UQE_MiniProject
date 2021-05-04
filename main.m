@@ -15,17 +15,20 @@ sampling = 'random'; %sampling type ('random' or 'hypercube')
 %------ Regression matrix
 %--inputs
 p=2; %maximum degree of polynomials allowed
-y=voltage(X); %voltage calculated from original variables samples
+u=voltage(X); %voltage calculated from original variables samples
 %--outputs
-%Z: regression matrix (nxp)
+%Z: regression matrix (nxP) where P=(M+p)!/M!p!
 %Alpha: set of multi-indices that satisfy the requirement |α|≤p
 %c: coordinates of the Legendre basis
-[Z,Alpha,c] = regression_matrix(M,p,X,y);
+[Z,Alpha,c] = regression_matrix(M,p,E,u);
 
 %------ Evaluation of the PCE model
 %--outputs
 %Y: PC evaluated model
-[Y] = model_evaluation(c,M,X,Alpha);
+U = zeros([1 n]);
+for i=1:n
+    U(1, i) = model_evaluation(c,M,E,Alpha);
+end
 
 %----- leave-one-out error
 %--inputs

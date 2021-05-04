@@ -35,9 +35,9 @@ if strcmp(transform_method,'normal')
     sQ=3e-6/60; %var (conversion mL/min to m^3/s)
     
     if strcmp(sampling_method,'random')
-        inp_sam = rand([1 sampling_points]); % random sampling
+        inp_sam = rand([sampling_points 1]); % random sampling
     elseif strcmp(sampling_method,'LatinHypercube')
-        inp_sam = lhsdesign(1, sampling_points); % Latin Hypercube Sampling
+        inp_sam = lhsdesign(sampling_points,1); % Latin Hypercube Sampling
     else
         fprintf('Wrong input sampling method! Check your input parameters!');
     end
@@ -76,9 +76,9 @@ elseif strcmp(transform_method,'uniform')
     
     % transform the sampling into uniform distribution between [-1,1]
     if strcmp(sampling_method,'random')
-        inp_sam_bef = rand([1 sampling_points])*2.0-1.0; % random sampling
+        inp_sam_bef = rand([sampling_points 1])*2.0-1.0; % random sampling
     elseif strcmp(sampling_method,'LatinHypercube')
-        inp_sam_bef = lhsdesign(1, sampling_points)*2.0-1.0; % Latin Hypercube Sampling
+        inp_sam_bef = lhsdesign(sampling_points,1)*2.0-1.0; % Latin Hypercube Sampling
     else
         fprintf('Wrong input sampling method! Check your input parameters!');
     end
