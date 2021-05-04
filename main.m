@@ -24,7 +24,7 @@ u=voltage(X); %voltage calculated from original variables samples
 
 %------ Evaluation of the PCE model
 %--outputs
-%Y: PC evaluated model
+%U: PC evaluated model
 U = zeros([1 n]);
 for i=1:n
     U(1, i) = model_evaluation(c,M,E,Alpha);
@@ -32,9 +32,9 @@ end
 
 %----- leave-one-out error
 %--inputs
-%val_n = 10; %size of validation set
+val_n = 10; %size of validation set
 %--outputs
 %ELOO,eLOO: leave-one-error before or after divided by the variance of U
 %eLOO_mod: modified the error by Heuristic modification factors to avoid overfitting
 %evar: mean-squared error
-%[ELOO,eLOO,eLOO_mod,evar] = leave_one_error(val_n,sampling,Z,c,Alpha);
+[ELOO,eLOO,eLOO_mod,evar] = leave_one_error(val_n,sampling,Z,c,Alpha);

@@ -1,4 +1,4 @@
-%% calculate the leave-one error of the model
+%% calculate the leaveoneerror of the model
 %input
 %val_n: size of validation set
 %sampling: type of sampling between 'random' or 'LatinHypercube'
