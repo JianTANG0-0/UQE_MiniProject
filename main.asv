@@ -5,17 +5,19 @@ M = 4; %number of distributed inputs (cell resistance, activity ratios and flow 
 
 %------ Experimental design
 %--inputs
-n=10; %input size
-sampling = 'random'; %sampling type ('random' or 'hypercube')
+n=10000; %input size
+sampling = 'hypercube'; %sampling type ('random' or 'hypercube')
 %--outputs
-%X: original variables samples (4xn matrix)
-%E: auxiliary variables samples uniformly distributed on [-1,1] (4xn matrix)
+%X: original variables samples (Mxn matrix)
+%E: auxiliary variables samples uniformly distributed on [-1,1] (Mxn matrix)
 [E,X] = experimental_design(n,sampling);
 
 %------ Regression matrix
 %--inputs
-p=2; %maximum degree of polynomials allowed
+p=4; %maximum degree of polynomials allowed
 u=voltage(X); %voltage calculated from original variables samples
+mean_u = mean(u); %mean value for the voltage
+variance_u = var(u);
 %--outputs
 %Z: regression matrix (nxP) where P=(M+p)!/M!p!
 %Alpha: set of multi-indices that satisfy the requirement |α|≤p
@@ -24,17 +26,19 @@ u=voltage(X); %voltage calculated from original variables samples
 
 %------ Evaluation of the PCE model
 %--outputs
-%Y: PC evaluated model
+%U: voltage from PCE-evaluated model
 U = zeros([1 n]);
 for i=1:n
-    U(1, i) = model_evaluation(c,M,E,Alpha);
+    U(1, i) = model_evaluation(c,M,E(:,i),Alpha);
 end
 
 %----- leave-one-out error
-%--inputs
-%val_n = 10; %size of validation set
 %--outputs
-%ELOO,eLOO: leave-one-error before or after divided by the variance of U
-%eLOO_mod: modified the error by Heuristic modification factors to avoid overfitting
+%ELOO,eLOO: leave-one-out error before or after divided by the variance of U
 %evar: mean-squared error
-%[ELOO,eLOO,eLOO_mod,evar] = leave_one_error(val_n,sampling,Z,c,Alpha);
+[ELOO,eLOO,evar] = leave_one_out(n,Z,u,U);
+
+
+
+%-------Plotting section
+
