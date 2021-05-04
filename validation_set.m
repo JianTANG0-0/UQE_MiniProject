@@ -21,6 +21,6 @@ else
     [Q_original,Q_uniform] = input_sampling(n,'LatinHypercube','Q','uniform');
 end
 
-E=horzcat(R_uniform,GammaP_uniform,GammaN_uniform,Q_uniform);
-X=horzcat(R_original,GammaP_original,GammaN_original,Q_original);
+E=vertcat(R_uniform,GammaP_uniform,GammaN_uniform,Q_uniform);
+X=vertcat(R_original,GammaP_original,GammaN_original,Q_original);
 end
