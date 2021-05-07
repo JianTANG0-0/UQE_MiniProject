@@ -5,7 +5,7 @@ clear all;
 %desired values of n
 min_power = 2;
 max_power = 4;
-number_eval_n = 10;
+number_eval_n = 50;
 N = logspace(min_power, max_power, number_eval_n);
 N=round(N);
 
@@ -58,18 +58,64 @@ while j<number_eval_n+1
     j=j+1;
 end
 
+%------Exporting results as a txt file
+writematrix(N, 'numberEvaluation.txt');
+writematrix(LeaveOneOutError, 'LeaveOneOutError.txt');
+writematrix(LeastSquareError, 'LeastSquareError.txt');
+writematrix(Mean, 'Mean.txt');
+writematrix(Variance, 'Variance.txt');
 
 %-------Plotting section
 figure(1)
-surf(N, P, LeastSquareError);
-set(gca,'XScale','log')
-set(gca,'YScale','log')
-set(gca,'ZScale','log')
-grid on
-
+loglog(N, LeaveOneOutError(1,:));
+hold on
+loglog(N, LeaveOneOutError(2,:));
+loglog(N, LeaveOneOutError(3,:));
+hold off
+legend('p=2','p=3','p=4');
+ xlabel('number of evaluations');
+ ylabel('Leave-one-out error');
+ 
+ 
 figure(2)
-surf(N, P, LeaveOneOutError);
-set(gca,'XScale','log')
-set(gca,'YScale','log')
-set(gca,'ZScale','log')
-grid on
+loglog(N, LeastSquareError(1,:));
+hold on
+loglog(N, LeastSquareError(2,:));
+loglog(N, LeastSquareError(3,:));
+hold off
+legend('p=2','p=3','p=4');
+ xlabel('number of evaluations');
+ ylabel('Least Square error');
+ 
+ figure(3)
+loglog(N, Mean(1,:));
+hold on
+loglog(N, Mean(2,:));
+loglog(N, Mean(3,:));
+hold off
+legend('p=2','p=3','p=4');
+ xlabel('number of evaluations');
+ ylabel('Mean(E)/Mean(X) -1');
+ 
+  figure(4)
+loglog(N, Variance(1,:));
+hold on
+loglog(N, Variance(2,:));
+loglog(N, Variance(3,:));
+hold off
+legend('p=2','p=3','p=4');
+ xlabel('number of evaluations');
+ ylabel('Variance(E)/Variance(X) -1');
+
+%surf(N, P, LeastSquareError);
+%set(gca,'XScale','log')
+%set(gca,'YScale','log')
+%set(gca,'ZScale','log')
+%grid on
+
+
+%surf(N, P, LeaveOneOutError);
+%set(gca,'XScale','log')
+%set(gca,'YScale','log')
+%set(gca,'ZScale','log')
+%grid on
