@@ -17,7 +17,7 @@ for i=1:number_eval_p
 end
 
 %matrixes for mean, variance and error
-Mean = zeros([number_eval_p number_eval_n]);
+Mean = zeros([2 number_eval_n]);
 Variance = zeros([number_eval_p number_eval_n]);
 LeastSquareError = zeros([number_eval_p number_eval_n]);
 LeaveOneOutError = zeros([number_eval_p number_eval_n]);
@@ -48,7 +48,8 @@ while j<number_eval_n+1
         [ELOO,eLOO,evar] = leave_one_out(n,Z,u,U);
     
         %storing values for mean, variance and error as a function of p
-        Mean(k,j) = mean(u)/mean(U)-1;
+        Mean(1,j) = mean(U);
+        Mean(2,j) = mean(u);
         Variance(k,j) = var(u)/var(U)-1;
         LeastSquareError(k,j) = evar;
         LeaveOneOutError(k,j) = eLOO;
@@ -84,11 +85,10 @@ legend('p=2','p=3','p=4');
 loglog(N, Mean(1,:));
 hold on
 loglog(N, Mean(2,:));
-loglog(N, Mean(3,:));
 hold off
 legend('p=2','p=3','p=4');
  xlabel('number of evaluations');
- ylabel('Mean(E)/Mean(X) -1');
+ ylabel('Mean');
  
   figure(4)
 loglog(N, Variance(1,:));
@@ -107,6 +107,6 @@ LeaveOneOutError=LeaveOneOutError';
 LeastSquareError=LeastSquareError';
 Mean=Mean';
 Variance=Variance';
-Results = horzcat(N, LeaveOneOutError, LeastSquareError, Variance);
+Results = horzcat(N, LeaveOneOutError, LeastSquareError, Variance, Mean);
 writematrix(Results,'Results.dat','Delimiter',' ')  
 
