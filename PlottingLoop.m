@@ -120,7 +120,7 @@ LeastSquareError=LeastSquareError';
 Mean=Mean';
 Variance=Variance';
 Results = horzcat(N, LeaveOneOutError, LeastSquareError, Mean, Variance);
-writematrix(Results, 'Results.txt')
+writematrix(Results,'Results.dat','Delimiter',' ')  
 %writematrix(N, 'numberEvaluation.txt');
 %writematrix(LeaveOneOutError, 'LeaveOneOutError.txt');
 %writematrix(LeastSquareError, 'LeastSquareError.txt');
