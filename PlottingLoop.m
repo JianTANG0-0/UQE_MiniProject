@@ -59,11 +59,13 @@ while j<number_eval_n+1
 end
 
 %------Exporting results as a txt file
-writematrix(N, 'numberEvaluation.txt');
-writematrix(LeaveOneOutError, 'LeaveOneOutError.txt');
-writematrix(LeastSquareError, 'LeastSquareError.txt');
-writematrix(Mean, 'Mean.txt');
-writematrix(Variance, 'Variance.txt');
+Results = vertcat(N, LeaveOneOutError, LeastSquareError, Mean, Variance);
+writematrix(Results, 'Results.txt')
+%writematrix(N, 'numberEvaluation.txt');
+%writematrix(LeaveOneOutError, 'LeaveOneOutError.txt');
+%writematrix(LeastSquareError, 'LeastSquareError.txt');
+%writematrix(Mean, 'Mean.txt');
+%writematrix(Variance, 'Variance.txt');
 
 %-------Plotting section
 figure(1)
