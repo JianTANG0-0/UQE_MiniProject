@@ -58,15 +58,6 @@ while j<number_eval_n+1
     j=j+1;
 end
 
-%------Exporting results as a txt file
-Results = vertcat(N, LeaveOneOutError, LeastSquareError, Mean, Variance);
-writematrix(Results, 'Results.txt')
-%writematrix(N, 'numberEvaluation.txt');
-%writematrix(LeaveOneOutError, 'LeaveOneOutError.txt');
-%writematrix(LeastSquareError, 'LeastSquareError.txt');
-%writematrix(Mean, 'Mean.txt');
-%writematrix(Variance, 'Variance.txt');
-
 %-------Plotting section
 figure(1)
 loglog(N, LeaveOneOutError(1,:));
@@ -121,3 +112,17 @@ legend('p=2','p=3','p=4');
 %set(gca,'YScale','log')
 %set(gca,'ZScale','log')
 %grid on
+
+%------Exporting results as a txt file
+N=N';
+LeaveOneOutError=LeaveOneOutError';
+LeastSquareError=LeastSquareError';
+Mean=Mean';
+Variance=Variance';
+Results = horzcat(N, LeaveOneOutError, LeastSquareError, Mean, Variance);
+writematrix(Results, 'Results.txt')
+%writematrix(N, 'numberEvaluation.txt');
+%writematrix(LeaveOneOutError, 'LeaveOneOutError.txt');
+%writematrix(LeastSquareError, 'LeastSquareError.txt');
+%writematrix(Mean, 'Mean.txt');
+%writematrix(Variance, 'Variance.txt');
