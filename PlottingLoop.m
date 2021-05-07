@@ -48,8 +48,8 @@ while j<number_eval_n+1
         [ELOO,eLOO,evar] = leave_one_out(n,Z,u,U);
     
         %storing values for mean, variance and error as a function of p
-        Mean(k,j) = mean(U)/mean(u)-1;
-        Variance(k,j) = var(U)/var(u)-1;
+        Mean(k,j) = mean(u)/mean(U)-1;
+        Variance(k,j) = var(u)/var(U)-1;
         LeastSquareError(k,j) = evar;
         LeaveOneOutError(k,j) = eLOO;
         k=k+1;
@@ -119,7 +119,7 @@ LeaveOneOutError=LeaveOneOutError';
 LeastSquareError=LeastSquareError';
 Mean=Mean';
 Variance=Variance';
-Results = horzcat(N, LeaveOneOutError, LeastSquareError, Mean, Variance);
+Results = horzcat(N, LeaveOneOutError, LeastSquareError, Variance);
 writematrix(Results,'Results.dat','Delimiter',' ')  
 %writematrix(N, 'numberEvaluation.txt');
 %writematrix(LeaveOneOutError, 'LeaveOneOutError.txt');
