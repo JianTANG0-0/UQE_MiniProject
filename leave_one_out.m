@@ -19,6 +19,6 @@ eLOO = ELOO / var(u);
 %eLOO_mod = eLOO * (1+trace(pinv(Z'*Z./n))/n)/(1-det(Z)/n); % modified the error by Heuristic modification factors to avoid overfitting
 
 % mean-squared error
-evar = sum((u-U).^2) / var(u);
+evar = sum((u-U).^2) / var(u)/(n-1);
 
 end

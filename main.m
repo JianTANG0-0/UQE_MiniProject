@@ -38,7 +38,7 @@ variance_U = var(U);
 %--outputs
 %ELOO,eLOO: leave-one-out error before or after divided by the variance of U
 %evar: mean-squared error
-[ELOO,eLOO,evar] = leave_one_out(n,Z,u,U);
+[ELOO,eLOO,evar] = leave_one_error(n,sampling,Z,c,Alpha);
 
 mean = mean(U)/mean(u)-1;
 variance = var(U)/var(u)-1;

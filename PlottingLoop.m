@@ -45,7 +45,7 @@ while j<number_eval_n+1
                 U(1, i) = model_evaluation(c,M,E(:,i),Alpha);
             end
 
-        [ELOO,eLOO,evar] = leave_one_out(n,Z,u,U);
+        [ELOO,eLOO,evar] = leave_one_error(n,sampling,Z,c,Alpha);
     
         %storing values for mean, variance and error as a function of p
         Mean(1,j) = mean(U);
@@ -98,7 +98,7 @@ loglog(N, Variance(3,:));
 hold off
 legend('p=2','p=3','p=4');
  xlabel('number of evaluations');
- ylabel('Variance(E)/Variance(X) -1');
+ ylabel('Variance(u)/Variance(U) -1');
 
 
 %------Exporting results as a dat file
